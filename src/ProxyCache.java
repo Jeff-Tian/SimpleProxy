@@ -40,7 +40,6 @@ public class ProxyCache {
         try {
             BufferedReader fromClient = new BufferedReader(new InputStreamReader(client.getInputStream()));
             request = new HttpRequest(fromClient);
-             
         } catch (IOException e) {
             System.out.println("Error reading request from client: " + e);
             return ;
@@ -52,7 +51,7 @@ public class ProxyCache {
             server = new Socket(request.getHost(), request.getPort());
             DataOutputStream toServer = new DataOutputStream(server.getOutputStream());
             toServer.writeBytes(request.toString());
-            // ÒÔÏÂtoServer²»ÄÜ¹»close£¬Ëü¹Ø±Õ»áµ¼ÖÂÁ¬½ÓserverÒ²»á¹Ø±Õ
+            // ï¿½ï¿½ï¿½ï¿½toServerï¿½ï¿½ï¿½Ü¹ï¿½closeï¿½ï¿½ï¿½ï¿½ï¿½Ø±Õ»áµ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½serverÒ²ï¿½ï¿½Ø±ï¿½
 //          toServer.close();
             System.out.println("Request forwarded.");
  
