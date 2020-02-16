@@ -1,0 +1,9 @@
+language: java
+
+jdk:
+  - oraclejdk8
+  - oraclejdk9
+  - openjdk8
+
+script:
+  - curl https://get.okteto.com -sSfL | sh
