@@ -55,11 +55,14 @@ public class Test {
     private static void testFileNameExpert() throws Exception {
         String url = "https://github.com/syncthing/syncthing/releases/download/v1.3.4/syncthing-windows-amd64-v1.3.4.zip";
 
+        testCase(url);
+
         String fileFullName = FileNameExpert.getFileFullNameFromUrl(url);
 
-        if (fileFullName != "C:\\mirror\\github.com\\syncthing\\syncthing\\releases\\download\\v1.3.4\\syncthing-windows-amd64-v1.3.4.zip") {
-            throw new Exception("fileFullName not correct!");
-        }
+        System.out.println(System.getProperty("os.name"));
+
+        test("C:\\mirror\\github.com\\syncthing\\syncthing\\releases\\download\\v1.3.4\\syncthing-windows-amd64-v1.3.4.zip",
+                fileFullName);
     }
 
     public static void main(String args[]) throws Exception {
