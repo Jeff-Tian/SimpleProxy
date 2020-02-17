@@ -11,7 +11,7 @@ scoop install openjdk
 ## Compile
 
 ```cmd
-cd src&&javac ProxyCache.java
+cd src&&javac -encoding utf8  ProxyCache.java
 ```
 
 ## Run

@@ -1,0 +1,1 @@
+cd src&&javac -encoding utf8  ProxyCache.java
