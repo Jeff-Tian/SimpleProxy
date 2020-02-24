@@ -4,5 +4,19 @@ jdk:
   - oraclejdk9
   - openjdk8
 
+env:
+  APP: "simple-proxy"
+
+install:
+  - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+  - chmod +x ./kubectl
+  - sudo mv ./kubectl /usr/local/bin/kubectl
+  - mkdir ${HOME}/.kube
+  - echo "$OKTETO_CONFIG" | base64 --decode > ${HOME}/.kube/config
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 script:
-  - curl https://get.okteto.com -sSfL | sh
+  - javac -encoding utf8  Test.java
+  - java Test
+  - docker build -t $DOCKER_USERNAME/$APP .
+  - docker push $DOCKER_USERNAME/$APP
+  - kubectl --context=\"cloud_okteto_com\" apply -f okteto.yml

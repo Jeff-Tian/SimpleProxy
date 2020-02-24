@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: simple-proxy
+  template:
+    metadata:
+      labels:
+        app: simple-proxy
+    spec:
+      terminationGracePeriodSeconds: 0
+      containers:
+        - name: simple-proxy
+          image: jefftian/simple-proxy:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 443
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-proxy
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+  labels:
+    app: simple-proxy
+spec:
+  type: ClusterIP
+  ports:
+    - name: simple-proxy
+      port: 443
+  selector:
+    app: simple-proxy
