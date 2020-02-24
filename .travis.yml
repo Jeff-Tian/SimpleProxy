@@ -21,4 +21,5 @@ script:
   - cd ..
   - docker build -t $DOCKER_USERNAME/$APP .
   - docker push $DOCKER_USERNAME/$APP
-  - kubectl --context=\"cloud_okteto_com\" apply -f okteto.yml
+  - cat ~/.kube/config
+  - kubectl apply -f okteto.yml
