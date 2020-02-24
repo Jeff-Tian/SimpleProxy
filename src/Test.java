@@ -59,10 +59,16 @@ public class Test {
 
         String fileFullName = FileNameExpert.getFileFullNameFromUrl(url);
 
-        System.out.println(System.getProperty("os.name"));
+        String osName = System.getProperty("os.name").toLowerCase();
+        System.out.println(osName);
 
-        test("C:\\mirror\\github.com\\syncthing\\syncthing\\releases\\download\\v1.3.4\\syncthing-windows-amd64-v1.3.4.zip",
-                fileFullName);
+        if (osName.startsWith("windows")) {
+            test("C:\\mirror\\github.com\\syncthing\\syncthing\\releases\\download\\v1.3.4\\syncthing-windows-amd64-v1.3.4.zip",
+                    fileFullName);
+        } else {
+            test("/mirror/github.com/syncthing/syncthing/releases/download/v1.3.4/syncthing-windows-amd64-v1.3.4.zip",
+                    fileFullName);
+        }
     }
 
     public static void main(String args[]) throws Exception {
