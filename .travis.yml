@@ -19,7 +19,12 @@ script:
   - javac -encoding utf8 Test.java
   - java Test
   - cd ..
-  - docker build -t $DOCKER_USERNAME/$APP .
-  - docker push $DOCKER_USERNAME/$APP
-  - cat ~/.kube/config
-  - kubectl apply -f okteto.yml
+
+jobs:
+  include:
+    # Define the release stage that runs semantic-release
+    - stage: release
+      script:
+        - docker build -t $DOCKER_USERNAME/$APP .
+        - docker push $DOCKER_USERNAME/$APP
+        - kubectl --context=cloud_okteto_com apply -f okteto.yml
