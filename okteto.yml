@@ -33,6 +33,6 @@ spec:
   type: ClusterIP
   ports:
     - name: simple-proxy
-      port: 443
+      port: 80
   selector:
     app: simple-proxy
