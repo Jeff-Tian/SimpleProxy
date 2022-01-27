@@ -1,17 +1,18 @@
 # SimpleProxy
 
-## Prequists
+## Prerequisite
 
 - Java
 
 ```cmd
+scoop bucket add java https://gitee.com/zizhujy/Java
 scoop install openjdk
 ```
 
 ## Compile
 
 ```cmd
-cd src&&javac -encoding utf8  ProxyCache.java
+cd src&&javac -Xlint:deprecation -encoding utf8  ProxyCache.java
 ```
 
 ## Run
